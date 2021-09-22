@@ -97,7 +97,7 @@ function player_falling()
     var element = null;
     for (var i = 0; i < noGround.length; i++) {
         element = noGround[i];
-        if (y > element.bot && y < element.top && x > element.left && x < element.right) {
+        if (y > element.bot && y < element.top && x > element.left && x < element.right ) {
             player1.dead();
         }
     }

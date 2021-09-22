@@ -84,7 +84,9 @@ function init()
     ground = new Ground(0xffffff, WIDTH, HEIGHT, 10);
     console.log(noGround)
     player1 = new Player("player1", 0xffff00, new THREE.Vector2(0, 0), 0);
+    player2 = new Player('player2', 0xffff00, new THREE.Vector2(100, 100), 0);
     scene.add(player1.graphic);
+    scene.add(player2.graphic);
     enemy1 = new Enemy();
     scene.add(enemy1.graphic);
     light1 = new Light("sun", 0xffffff, "0,0,340");
