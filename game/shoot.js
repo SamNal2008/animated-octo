@@ -58,42 +58,47 @@ function bullet_collision()
 function player_collision()
 {
     //collision between player and walls
-    var x = player1.graphic.position.x + WIDTH / 2;
-    var y = player1.graphic.position.y + HEIGHT / 2;
+    var x = player1.graphic.position.x;
+    var y = player1.graphic.position.y;
 
-    if ( x > WIDTH )
-        player1.graphic.position.x -= x - WIDTH;
-    if ( y < 0 )
-        player1.graphic.position.y -= y;
-    if ( y > HEIGHT )
-        player1.graphic.position.y -= y - HEIGHT;
+
+
+    if ( x > (WIDTH / 2)) {
+        console.log('to right')
+        player1.graphic.position.x -= x - WIDTH/2;
+        player1.position.x = player1.graphic.position.x
+    }
+    if ( y < (-HEIGHT / 2) ) {
+        console.log('too low')
+        player1.graphic.position.y -= player1.graphic.position.y + HEIGHT/2;
+        player1.position.y = player1.graphic.position.y
+    }
+    if ( y > (HEIGHT/2) ) {
+        console.log('too height')
+        player1.graphic.position.y -= y - HEIGHT/2;
+        player1.position.y = player1.graphic.position.y
+    }
+    if (x < (-WIDTH/2)) {
+        console.log('too left')
+        player1.graphic.position.x -= x + WIDTH/2
+        player1.position.x = player1.graphic.position.x
+    }
 
 }
+
 
 function player_falling()
 {
     var nb_tile = 10;
     var sizeOfTileX = WIDTH / nb_tile;
     var sizeOfTileY = HEIGHT / nb_tile;
-    var x = player1.graphic.position.x | 0;
-    var y = player1.graphic.position.y | 0;
-    var length = noGround.length;
+    var x = player1.graphic.position.x;
+    var y = player1.graphic.position.y;
     var element = null;
-
-    for (var i = 0; i < length; i++) {
+    for (var i = 0; i < noGround.length; i++) {
         element = noGround[i];
-
-        var tileX = (element[0]) | 0;
-        var tileY = (element[1]) | 0;
-        var mtileX = (element[0] + sizeOfTileX) | 0;
-        var mtileY = (element[1] + sizeOfTileY) | 0;
-
-        if ((x > tileX)
-            && (x < mtileX)
-            && (y > tileY) 
-            && (y < mtileY))
-        {
-           player1.dead();
+        if (y > element.bot && y < element.top && x > element.left && x < element.right) {
+            player1.dead();
         }
     }
 
